@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsl6wjlp0ay5r"]
+
+[ext_resource type="Script" path="res://assets/scripts/marble.gd" id="1_ijj3j"]
+[ext_resource type="Material" uid="uid://dk8yrji1jujtf" path="res://assets/materials/marble.tres" id="2_pykln"]
+[ext_resource type="Material" uid="uid://crr03j0x482a1" path="res://assets/materials/trail.tres" id="3_r1p08"]
+[ext_resource type="Texture2D" uid="uid://dt37hcr6h5utt" path="res://assets/sprites/glow_sprite.png" id="4_d3ywx"]
+[ext_resource type="AudioStream" uid="uid://cthpaycyxx8ip" path="res://assets/sounds/rolling.wav" id="5_8r2uw"]
+[ext_resource type="AudioStream" uid="uid://cyfbq3lxkwfmu" path="res://assets/sounds/impact.wav" id="6_aem1y"]
+[ext_resource type="AudioStream" uid="uid://cjgwlwmd2in1n" path="res://assets/sounds/eat_enemy.wav" id="7_vpe72"]
+[ext_resource type="AudioStream" uid="uid://da66ps6ib3ibs" path="res://assets/sounds/eat_fruit.wav" id="8_bquge"]
+[ext_resource type="AudioStream" uid="uid://mr7nx5dcwf7t" path="res://assets/sounds/death.wav" id="8_wg7lx"]
+[ext_resource type="AudioStream" uid="uid://cwyfgpff531qt" path="res://assets/sounds/victory.wav" id="9_c35dn"]
+[ext_resource type="AudioStream" uid="uid://buasqbjwkh2uf" path="res://assets/sounds/extra_life.wav" id="10_4jx53"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_b3nsf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ihydb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lkg82"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_p7yfj"]
+transform_format = 1
+use_colors = true
+mesh = SubResource("SphereMesh_lkg82")
+
+[node name="Marble" type="CharacterBody3D"]
+axis_lock_linear_y = true
+script = ExtResource("1_ijj3j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_b3nsf")
+surface_material_override/0 = ExtResource("2_pykln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ihydb")
+
+[node name="Trail" type="MultiMeshInstance3D" parent="."]
+top_level = true
+material_override = ExtResource("3_r1p08")
+multimesh = SubResource("MultiMesh_p7yfj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+billboard = 1
+texture = ExtResource("4_d3ywx")
+
+[node name="RollingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_8r2uw")
+attenuation_model = 3
+pitch_scale = 2.0
+
+[node name="ImpactSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_aem1y")
+attenuation_model = 3
+pitch_scale = 2.0
+
+[node name="EatEnemySound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_vpe72")
+
+[node name="EatFruitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_bquge")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_wg7lx")
+volume_db = -5.0
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_c35dn")
+
+[node name="ExtraLifeSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_4jx53")

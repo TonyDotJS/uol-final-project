@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://buragor8ql8x3"
+path="res://.godot/imported/great_dodecahedron.obj-6172fea755fdd1aa358be983b94252dc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/great_dodecahedron.obj-6172fea755fdd1aa358be983b94252dc.mesh"]
+
+source_file="res://assets/models/solids/great_dodecahedron.obj"
+dest_files=["res://.godot/imported/great_dodecahedron.obj-6172fea755fdd1aa358be983b94252dc.mesh", "res://.godot/imported/great_dodecahedron.obj-6172fea755fdd1aa358be983b94252dc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

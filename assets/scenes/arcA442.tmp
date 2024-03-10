@@ -1,0 +1,243 @@
+[gd_scene load_steps=33 format=3 uid="uid://cv187k6y81heo"]
+
+[ext_resource type="Script" path="res://assets/scripts/state.gd" id="1_8v0py"]
+[ext_resource type="Material" uid="uid://k6su7wqjyw5o" path="res://assets/materials/wood.tres" id="2_3hk1h"]
+[ext_resource type="MeshLibrary" uid="uid://cvj662141rqwp" path="res://assets/maze_tiles.tres" id="2_6j1mh"]
+[ext_resource type="Script" path="res://assets/scripts/set_maze.gd" id="3_dtiqj"]
+[ext_resource type="Script" path="res://assets/scripts/light.gd" id="4_vyh1q"]
+[ext_resource type="Script" path="res://assets/scripts/antilight.gd" id="5_e3r4n"]
+[ext_resource type="PackedScene" uid="uid://rn5c7s6c10ku" path="res://assets/scenes/marble.tscn" id="6_a5qq1"]
+[ext_resource type="Script" path="res://assets/scripts/pellets.gd" id="7_ouhsc"]
+[ext_resource type="Script" path="res://assets/scripts/enemy/red.gd" id="8_8mevr"]
+[ext_resource type="Script" path="res://assets/scripts/enemy/blue.gd" id="9_37o3u"]
+[ext_resource type="PackedScene" uid="uid://bt45ii4nbwwjy" path="res://assets/scenes/pellet.tscn" id="9_f7ejj"]
+[ext_resource type="Script" path="res://assets/scripts/enemy/pink.gd" id="10_3fytx"]
+[ext_resource type="PackedScene" uid="uid://b6bnailhdyfgx" path="res://assets/scenes/super_pellet.tscn" id="10_k4c5a"]
+[ext_resource type="Script" path="res://assets/scripts/enemy/orange.gd" id="11_v2i3v"]
+[ext_resource type="Script" path="res://assets/scripts/swivel.gd" id="12_bwhdv"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntmc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ofnan"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="Environment" id="Environment_orroa"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.25
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3olv3"]
+plane = Plane(-1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l5n0e"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_55b1e"]
+plane = Plane(0, 0, -1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vqwpd"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88rs7"]
+size = Vector3(1, 1, 4)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n3drj"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ubdxd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkd0a"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xikm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo3hg"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkfu4"]
+albedo_color = Color(1, 0.27451, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmkjy"]
+albedo_color = Color(1, 0.360784, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_6jahu"]
+text = "SCORE
+12345678910"
+font_size = 127
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pktuh"]
+size = Vector3(7.89181, 2.77986, 0.125)
+
+[node name="Main" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_8v0py")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_ntmc7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_ofnan")
+surface_material_override/0 = ExtResource("2_3hk1h")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh_library = ExtResource("2_6j1mh")
+cell_size = Vector3(1, 1, 1)
+cell_scale = 0.5
+data = {
+"cells": PackedInt32Array(1, 65535, 655361, 1, 0, 655361, 1, 1, 655361, 1, 65534, 655361, 1, 65533, 655361, 1, 2, 655361, 0, 65533, 0, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1441792, 1, 3, 1048578, 1, 65532, 655362, 65535, 65533, 1048577, 0, 65532, 1441793, 65535, 65532, 1441793, 65534, 65532, 1441793, 65533, 65532, 1441794, 0, 3, 1048577, 65535, 3, 1048577, 65534, 3, 1048577, 65534, 2, 655360, 65535, 2, 1441793, 65534, 65533, 1048576, 65534, 1, 655362, 65534, 65534, 1048578, 65533, 65533, 1, 65533, 65534, 2, 65533, 1, 1441794, 65533, 2, 1, 65533, 3, 2)
+}
+script = ExtResource("3_dtiqj")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 70.0
+directional_shadow_pancake_size = 5.0
+script = ExtResource("4_vyh1q")
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_energy = 0.25
+script = ExtResource("5_e3r4n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -8.74228e-08, -3.82136e-15, 0, -4.37113e-08, 1, -8.74228e-08, -1, -4.37113e-08, 0, 45, 0)
+environment = SubResource("Environment_orroa")
+fov = 37.5
+size = 30.0
+far = 60.0
+
+[node name="Marble" parent="." instance=ExtResource("6_a5qq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="East" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/East"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_3olv3")
+disabled = true
+
+[node name="West" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/West"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_l5n0e")
+disabled = true
+
+[node name="South" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/South"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("WorldBoundaryShape3D_55b1e")
+disabled = true
+
+[node name="North" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/North"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("WorldBoundaryShape3D_vqwpd")
+disabled = true
+
+[node name="CageDoor" type="StaticBody3D" parent="Walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/CageDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+shape = SubResource("BoxShape3D_88rs7")
+
+[node name="Pellets" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+script = ExtResource("7_ouhsc")
+pellet_scene = ExtResource("9_f7ejj")
+super_pellet_scene = ExtResource("10_k4c5a")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
+shape = SubResource("WorldBoundaryShape3D_n3drj")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Red" type="Area3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
+script = ExtResource("8_8mevr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Red"]
+mesh = SubResource("BoxMesh_ubdxd")
+surface_material_override/0 = SubResource("StandardMaterial3D_qkd0a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Red"]
+shape = SubResource("BoxShape3D_1xikm")
+
+[node name="Blue" type="Area3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1.5)
+script = ExtResource("9_37o3u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Blue"]
+mesh = SubResource("BoxMesh_ubdxd")
+surface_material_override/0 = SubResource("StandardMaterial3D_eo3hg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Blue"]
+shape = SubResource("BoxShape3D_1xikm")
+
+[node name="Pink" type="Area3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+script = ExtResource("10_3fytx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Pink"]
+mesh = SubResource("BoxMesh_ubdxd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jkfu4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Pink"]
+shape = SubResource("BoxShape3D_1xikm")
+
+[node name="Orange" type="Area3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.5)
+script = ExtResource("11_v2i3v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Orange"]
+mesh = SubResource("BoxMesh_ubdxd")
+surface_material_override/0 = SubResource("StandardMaterial3D_nmkjy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Orange"]
+shape = SubResource("BoxShape3D_1xikm")
+
+[node name="SwivelUI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Score" type="Node3D" parent="SwivelUI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -9)
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="SwivelUI/Score"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+node_b = NodePath("../TextBody")
+
+[node name="TextBody" type="RigidBody3D" parent="SwivelUI/Score"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2)
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("12_bwhdv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SwivelUI/Score/TextBody"]
+mesh = SubResource("TextMesh_6jahu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SwivelUI/Score/TextBody"]
+shape = SubResource("BoxShape3D_pktuh")
+
+[connection signal="body_entered" from="Enemies/Red" to="Enemies/Red" method="_on_body_entered"]
+[connection signal="body_entered" from="Enemies/Blue" to="Enemies/Blue" method="_on_body_entered"]
+[connection signal="body_entered" from="Enemies/Pink" to="Enemies/Pink" method="_on_body_entered"]
+[connection signal="body_entered" from="Enemies/Orange" to="Enemies/Orange" method="_on_body_entered"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cux1xokjiuadp"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyea1q2o7chlp" path="res://assets/models/maze_tiles/innercorner.obj" id="1_fcdq6"]
+[ext_resource type="Material" uid="uid://favh3dyeh2oj" path="res://assets/materials/pellet.tres" id="2_my0l8"]
+[ext_resource type="ArrayMesh" uid="uid://b4vwgnirwe1mc" path="res://assets/models/maze_tiles/semiwall.obj" id="3_ohjdw"]
+[ext_resource type="ArrayMesh" uid="uid://d1l1u3detnho5" path="res://assets/models/maze_tiles/outercorner.obj" id="4_v84hs"]
+[ext_resource type="ArrayMesh" uid="uid://c7si4yn7of2ib" path="res://assets/models/maze_tiles/quadfill.obj" id="5_yjmcl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ksmvw"]
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wndfh"]
+size = Vector3(1, 2, 2)
+
+[node name="Root" type="Node3D"]
+
+[node name="innercorner" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_fcdq6")
+skeleton = NodePath("../outercorner")
+surface_material_override/0 = ExtResource("2_my0l8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="innercorner"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="innercorner/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+shape = SubResource("CylinderShape3D_ksmvw")
+
+[node name="semiwall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+mesh = ExtResource("3_ohjdw")
+surface_material_override/0 = ExtResource("2_my0l8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="semiwall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="semiwall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_wndfh")
+
+[node name="outercorner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+mesh = ExtResource("4_v84hs")
+surface_material_override/0 = ExtResource("2_my0l8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="outercorner"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="outercorner/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+shape = SubResource("CylinderShape3D_ksmvw")
+
+[node name="quadfill" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+mesh = ExtResource("5_yjmcl")
+surface_material_override/0 = ExtResource("2_my0l8")

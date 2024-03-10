@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://bp4bhxdbvrukk"]
+
+[ext_resource type="ArrayMesh" uid="uid://dychesvrgc5mb" path="res://assets/models/solids/tetrahedron.obj" id="1_6xlhu"]
+[ext_resource type="Script" path="res://assets/scripts/fruit.gd" id="1_77sfk"]
+[ext_resource type="Material" uid="uid://c8eau6kdvxhkp" path="res://assets/materials/fruit.tres" id="2_ixh7a"]
+[ext_resource type="ArrayMesh" uid="uid://bbs54wyb3h3x7" path="res://assets/models/solids/octahedron.obj" id="3_pt32p"]
+[ext_resource type="ArrayMesh" uid="uid://bnfg1vpuku20l" path="res://assets/models/solids/dodecahedron.obj" id="4_y31pj"]
+[ext_resource type="ArrayMesh" uid="uid://ckfob603p6l25" path="res://assets/models/solids/icosahedron.obj" id="5_w58xq"]
+[ext_resource type="ArrayMesh" uid="uid://wh64kl4s43by" path="res://assets/models/solids/small_stellated_dodecahedron.obj" id="6_w15rb"]
+[ext_resource type="ArrayMesh" uid="uid://buragor8ql8x3" path="res://assets/models/solids/great_dodecahedron.obj" id="7_u03ic"]
+[ext_resource type="ArrayMesh" uid="uid://berhfhxf7bgtc" path="res://assets/models/solids/great_stellated_dodecahedron.obj" id="8_a1u1w"]
+[ext_resource type="ArrayMesh" uid="uid://cjubss5ypf2q8" path="res://assets/models/solids/great_icosahedron.obj" id="9_nlcp0"]
+[ext_resource type="Texture2D" uid="uid://dt37hcr6h5utt" path="res://assets/sprites/glow_sprite.png" id="11_dhc04"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tvbth"]
+radius = 0.625
+
+[sub_resource type="BoxMesh" id="BoxMesh_602i8"]
+
+[node name="Fruit" type="Area3D"]
+script = ExtResource("1_77sfk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tvbth")
+
+[node name="FruitMeshes" type="Node3D" parent="."]
+
+[node name="0" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("1_6xlhu")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="1" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.707, 0, 0, 0, 0.707, 0, 0, 0, 0.707, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = SubResource("BoxMesh_602i8")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="2" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("3_pt32p")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="3" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("4_y31pj")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="4" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("5_w58xq")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="5" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("6_w15rb")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="6" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("7_u03ic")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="7" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("8_a1u1w")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="8" type="MeshInstance3D" parent="FruitMeshes"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("9_nlcp0")
+surface_material_override/0 = ExtResource("2_ixh7a")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.25, 0)
+top_level = true
+visible = false
+modulate = Color(1, 1, 1, 0.498039)
+billboard = 1
+texture = ExtResource("11_dhc04")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt45ii4nbwwjy"]
+
+[ext_resource type="Script" path="res://assets/scripts/pellet.gd" id="1_wyy8m"]
+[ext_resource type="Material" uid="uid://favh3dyeh2oj" path="res://assets/materials/pellet.tres" id="2_muvwq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qvl1x"]
+radius = 0.125
+height = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lh3ed"]
+radius = 0.625
+
+[node name="Pellet" type="Area3D"]
+script = ExtResource("1_wyy8m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_qvl1x")
+surface_material_override/0 = ExtResource("2_muvwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_lh3ed")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

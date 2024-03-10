@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6bnailhdyfgx"]
+
+[ext_resource type="Script" path="res://assets/scripts/pellet.gd" id="1_dfo77"]
+[ext_resource type="Texture2D" uid="uid://dt37hcr6h5utt" path="res://assets/sprites/glow_sprite.png" id="2_fm5op"]
+[ext_resource type="Material" uid="uid://favh3dyeh2oj" path="res://assets/materials/pellet.tres" id="2_tsu66"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qvl1x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lh3ed"]
+radius = 0.625
+
+[node name="SuperPellet" type="Area3D"]
+script = ExtResource("1_dfo77")
+is_super = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.501961)
+billboard = 1
+texture = ExtResource("2_fm5op")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_qvl1x")
+surface_material_override/0 = ExtResource("2_tsu66")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_lh3ed")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

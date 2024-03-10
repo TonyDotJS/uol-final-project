@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://k6su7wqjyw5o"]
+
+[ext_resource type="Shader" path="res://assets/shaders/wood.gdshader" id="1_3jqbn"]
+[ext_resource type="Texture2D" uid="uid://if7od3lwrpxx" path="res://assets/textures/wood/plywood_diff_4k.jpg" id="2_a405d"]
+[ext_resource type="Texture2D" uid="uid://de7ntjfh4yfcy" path="res://assets/textures/wood/plywood_nor_gl_4k_uint32.exr" id="3_qwc8q"]
+[ext_resource type="Texture2D" uid="uid://bpp2mxbvhj378" path="res://assets/textures/wood/plywood_rough_4k.jpg" id="4_dougq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3jqbn")
+shader_parameter/texture_scale = 100.0
+shader_parameter/layer_offset = 0.01
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_rotation = 0.0
+shader_parameter/hole_location = Vector3(0, 0, 0)
+shader_parameter/main_texture = ExtResource("2_a405d")
+shader_parameter/normal_texture = ExtResource("3_qwc8q")
+shader_parameter/rough_texture = ExtResource("4_dougq")

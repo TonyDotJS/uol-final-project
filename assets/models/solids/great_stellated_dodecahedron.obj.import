@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://berhfhxf7bgtc"
+path="res://.godot/imported/great_stellated_dodecahedron.obj-98dda7cdcec0ce467978a4bb728f8e41.mesh"
+
+[deps]
+
+files=["res://.godot/imported/great_stellated_dodecahedron.obj-98dda7cdcec0ce467978a4bb728f8e41.mesh"]
+
+source_file="res://assets/models/solids/great_stellated_dodecahedron.obj"
+dest_files=["res://.godot/imported/great_stellated_dodecahedron.obj-98dda7cdcec0ce467978a4bb728f8e41.mesh", "res://.godot/imported/great_stellated_dodecahedron.obj-98dda7cdcec0ce467978a4bb728f8e41.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

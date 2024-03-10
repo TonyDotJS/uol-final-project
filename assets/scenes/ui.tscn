@@ -1,0 +1,188 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp7vxw32o5xsw"]
+
+[ext_resource type="Script" path="res://assets/scripts/pause_menu.gd" id="1_x6dmf"]
+[ext_resource type="LabelSettings" uid="uid://dl6hgeuskmfmj" path="res://assets/label_settings/pause_menu_label.tres" id="2_0aw00"]
+[ext_resource type="Texture2D" uid="uid://bxald0aqvij2g" path="res://assets/sprites/pause.png" id="2_ev2qb"]
+[ext_resource type="Script" path="res://assets/scripts/pause_btn.gd" id="3_5yp4y"]
+[ext_resource type="FontFile" uid="uid://c7ur8npuid83k" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_prvnb"]
+[ext_resource type="Theme" uid="uid://cmyur3gwnxclg" path="res://assets/themes/ui_theme.tres" id="4_80kp6"]
+[ext_resource type="Texture2D" uid="uid://jvp4qxhjfa1g" path="res://assets/sprites/recenter.png" id="7_0qv1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5hds"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 0.501961)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_5u5r8"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RecenterButton" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -48.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 15
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="RecenterButton"]
+layout_mode = 2
+alignment_horizontal = 2
+
+[node name="Button" type="Button" parent="RecenterButton/AspectRatioContainer"]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("4_80kp6")
+icon = ExtResource("7_0qv1r")
+expand_icon = true
+
+[node name="PauseMenu" type="MarginContainer" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -100.5
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_x6dmf")
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_f5hds")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RotaryUIToggle" type="HBoxContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer/RotaryUIToggle"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Rotary Score & Lives Display"
+label_settings = ExtResource("2_0aw00")
+
+[node name="Control" type="Control" parent="PauseMenu/MarginContainer/VBoxContainer/RotaryUIToggle"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="PauseMenu/MarginContainer/VBoxContainer/RotaryUIToggle"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../../Quit/Button")
+focus_neighbor_bottom = NodePath("../../ControlScheme/Swipe")
+
+[node name="ControlScheme" type="HBoxContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer/ControlScheme"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Control Method"
+label_settings = ExtResource("2_0aw00")
+
+[node name="Control" type="Control" parent="PauseMenu/MarginContainer/VBoxContainer/ControlScheme"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Motion" type="CheckBox" parent="PauseMenu/MarginContainer/VBoxContainer/ControlScheme"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Swipe")
+focus_neighbor_top = NodePath("../../RotaryUIToggle/CheckButton")
+focus_neighbor_right = NodePath("../Gamepad")
+focus_neighbor_bottom = NodePath("../../Quit/Button")
+theme_override_fonts/font = ExtResource("3_prvnb")
+button_group = SubResource("ButtonGroup_5u5r8")
+text = "Motion"
+
+[node name="Gamepad" type="CheckBox" parent="PauseMenu/MarginContainer/VBoxContainer/ControlScheme"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Motion")
+focus_neighbor_top = NodePath("../../RotaryUIToggle/CheckButton")
+focus_neighbor_right = NodePath("../Swipe")
+focus_neighbor_bottom = NodePath("../../Quit/Button")
+theme_override_fonts/font = ExtResource("3_prvnb")
+button_group = SubResource("ButtonGroup_5u5r8")
+text = "Gamepad"
+
+[node name="Swipe" type="CheckBox" parent="PauseMenu/MarginContainer/VBoxContainer/ControlScheme"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Gamepad")
+focus_neighbor_top = NodePath("../../RotaryUIToggle/CheckButton")
+focus_neighbor_right = NodePath("../Motion")
+focus_neighbor_bottom = NodePath("../../Quit/Button")
+theme_override_fonts/font = ExtResource("3_prvnb")
+button_group = SubResource("ButtonGroup_5u5r8")
+text = "Swipe"
+
+[node name="Quit" type="MarginContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer/Quit"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../ControlScheme/Motion")
+focus_neighbor_bottom = NodePath("../../RotaryUIToggle/CheckButton")
+theme_override_fonts/font = ExtResource("3_prvnb")
+text = "QUIT ARCADE RUN"
+
+[node name="PauseButton" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="PauseButton"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PauseButton/AspectRatioContainer"]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("4_80kp6")
+icon = ExtResource("2_ev2qb")
+expand_icon = true
+script = ExtResource("3_5yp4y")
+
+[connection signal="pressed" from="RecenterButton/AspectRatioContainer/Button" to="PauseMenu" method="_on_recenter_pressed"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/VBoxContainer/RotaryUIToggle/CheckButton" to="PauseMenu" method="_on_rotary_ui_toggled"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ControlScheme/Motion" to="PauseMenu" method="_on_motion_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ControlScheme/Gamepad" to="PauseMenu" method="_on_gamepad_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ControlScheme/Swipe" to="PauseMenu" method="_on_swipe_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit/Button" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseButton/AspectRatioContainer/Button" to="PauseMenu" method="_on_pause_button_pressed"]

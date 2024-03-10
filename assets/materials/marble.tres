@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dk8yrji1jujtf"]
+
+[ext_resource type="Texture2D" uid="uid://dge1wrhl2wbdt" path="res://assets/textures/basketball.png" id="1_nrf76"]
+
+[resource]
+albedo_texture = ExtResource("1_nrf76")

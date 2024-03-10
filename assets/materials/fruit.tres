@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8eau6kdvxhkp"]
+
+[ext_resource type="Shader" path="res://assets/shaders/fruit.gdshader" id="1_g2f14"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_g2f14")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/light_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/rainbow = true

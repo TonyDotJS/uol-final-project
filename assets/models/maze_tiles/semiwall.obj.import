@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b4vwgnirwe1mc"
+path="res://.godot/imported/semiwall.obj-525dae09c3a8efcfe9d4bfc054deb583.mesh"
+
+[deps]
+
+files=["res://.godot/imported/semiwall.obj-525dae09c3a8efcfe9d4bfc054deb583.mesh"]
+
+source_file="res://assets/models/maze_tiles/semiwall.obj"
+dest_files=["res://.godot/imported/semiwall.obj-525dae09c3a8efcfe9d4bfc054deb583.mesh", "res://.godot/imported/semiwall.obj-525dae09c3a8efcfe9d4bfc054deb583.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
